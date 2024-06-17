@@ -1,0 +1,21 @@
+.user-form input,
+.user-form select {
+  border: 0px;
+  border-bottom: 1px solid #ddd;
+  border-radius: 0;
+  outline: none;
+  box-shadow: none;
+}
+
+.user-form label {
+  right: 0;
+  left: auto;
+  color: #888;
+  font-size: 14px;
+}
+
+.user-form input:focus + label,
+.user-form select:focus + label {
+  color: rgb(35, 130, 9);
+  font-weight: bold;
+}

@@ -1,0 +1,214 @@
+<div class="container">
+  <form
+    (ngSubmit)="onSubmit(formData)"
+    [formGroup]="formData"
+    class="user-form"
+  >
+    <div class="row mt-3">
+      <div class="col-md-3 col-12 form-floating">
+        <input
+          type="text"
+          class="form-control"
+          required
+          formControlName="fNameAr"
+          placeholder="name@example.com"
+          id="fNameAr"
+        />
+        <label for="fNameAr">الإسم الأول بالعربية</label>
+      </div>
+      <div class="col-md-3 col-12 form-group">
+        <label for="secNameAr">الإسم الثانى بالعربية</label>
+        <input
+          type="text"
+          class="form-control"
+          required
+          formControlName="secNameAr"
+        />
+      </div>
+      <div class="col-md-3 col-12 form-group">
+        <label for="thirdNameAr">الإسم الأوسط بالعربية</label>
+        <input
+          type="text"
+          class="form-control"
+          required
+          formControlName="thirdNameAr"
+        />
+      </div>
+      <div class="col-md-3 col-12 form-group">
+        <label for="lNameAr">الإسم الأخير بالعربية</label>
+        <input
+          type="text"
+          class="form-control"
+          required
+          formControlName="lNameAr"
+        />
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-3 col-12 form-group">
+        <label for="fNameEn">الإسم الأول بالإنجليزية</label>
+        <input
+          type="text"
+          class="form-control"
+          required
+          formControlName="fNameEn"
+        />
+      </div>
+      <div class="col-md-3 col-12 form-group">
+        <label for="secNameEn">الإسم الثانى بالإنجليزية</label>
+        <input
+          type="text"
+          class="form-control"
+          required
+          formControlName="secNameEn"
+        />
+      </div>
+      <div class="col-md-3 col-12 form-group">
+        <label for="thirdNameEn">الإسم الأوسط بالإنجليزية</label>
+        <input
+          type="text"
+          class="form-control"
+          required
+          formControlName="thirdNameEn"
+        />
+      </div>
+      <div class="col-md-3 col-12 form-group">
+        <label for="lNameEn">الإسم الأخير بالإنجليزية</label>
+        <input
+          type="text"
+          class="form-control"
+          required
+          formControlName="lNameEn"
+        />
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-5 col-3 form-group">
+        <label for="email">البريد الإلكترونى</label>
+        <input
+          type="text"
+          class="form-control"
+          required
+          formControlName="email"
+        />
+      </div>
+      <div class="col-md-3 col-3 form-group">
+        <label for="countryCode">كود المدينة</label>
+        <input
+          type="text"
+          class="form-control"
+          required
+          formControlName="countryCode"
+        />
+      </div>
+      <div class="col-md-4 col-3 form-group">
+        <label for="mobileNumber">رقم الجوال</label>
+        <input
+          type="text"
+          class="form-control"
+          required
+          formControlName="mobileNumber"
+        />
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-6 col-3 form-group">
+        <label for="birthDate">تاريخ الميلاد</label>
+        <input
+          type="text"
+          class="form-control"
+          required
+          formControlName="birthDate"
+        />
+      </div>
+      <div class="col-md-6 col-3 form-group">
+        <label for="nationalId">رقم الهوية</label>
+        <input
+          type="number"
+          min="0"
+          class="form-control"
+          required
+          formControlName="nationalId"
+        />
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-6 col-12 form-group">
+        <label for="maritalStatus">الحالة الإجتماعية</label>
+        <select
+          type="text"
+          class="form-control"
+          required
+          formControlName="maritalStatus"
+        >
+          <option>Test</option>
+          <option>Test</option>
+          <option>Test</option>
+        </select>
+      </div>
+      <div class="col-md-6 col-12 form-group">
+        <label for="gender">الجنس</label>
+        <select
+          [(ngModel)]="selectedGender"
+          type="number"
+          class="form-control"
+          required
+          formControlName="gender"
+        >
+          <option *ngFor="let key of Genders" [value]="GenderList[key]">
+            {{ key }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-12 col-12 form-group">
+      <label for="addressAr">العنوان باللغة العربية</label>
+      <input
+        type="text"
+        class="form-control"
+        required
+        formControlName="addressAr"
+      />
+    </div>
+    <div class="col-md-12 col-12 form-group">
+      <label for="addressEn">العنوان باللغة الإنجليزية</label>
+      <input
+        type="text"
+        class="form-control"
+        required
+        formControlName="addressEn"
+      />
+    </div>
+    <div
+      class="text-success rounded-3 p-3 mt-3 border"
+      style="background-color: #eee"
+    >
+      معلومات عن الوظيفة
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-6 col-12 form-group">
+        <label for="departmentId">الإدارة</label>
+        <input
+          type="number"
+          min="0"
+          class="form-control"
+          required
+          formControlName="departmentId"
+        />
+      </div>
+      <div class="col-md-6 col-12 form-group">
+        <label for="jobId">الوظيفة</label>
+        <input
+          type="number"
+          min="0"
+          class="form-control"
+          required
+          formControlName="jobId"
+        />
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="formData.invalid">
+      Save
+    </button>
+  </form>
+</div>

@@ -1,0 +1,39 @@
+<h2 class="mb-4 text-center">Users</h2>
+<div class="d-flex justify-content-end mb-3">
+  <a class="btn btn-success" routerLink="/users/form">Add New User</a>
+</div>
+<table class="table table-striped" id="Users">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Mobile</th>
+      <th>Email</th>
+      <th>Job</th>
+      <th>Department</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.fullName }}</td>
+      <td>{{ user.mobileNumber }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.jobName }}</td>
+      <td>{{ user.departmentName }}</td>
+      <td>
+        <a
+          class="btn btn-sm btn-warning"
+          [routerLink]="['/user/form/', user.id]"
+          >Edit</a
+        >
+        <button
+          *ngIf="user.id !== undefined"
+          class="btn btn-sm btn-danger ml-2"
+          (click)="deleteUser(user.id)"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
