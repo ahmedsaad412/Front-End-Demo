@@ -114,6 +114,8 @@ export class UserFormComponent implements OnInit {
       }
     });
 
+    
+
     this.Genders = Object.keys(Gender).filter((key) => isNaN(Number(key)));
   }
   onSubmit(formData: FormGroup) {

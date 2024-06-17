@@ -1,9 +1,9 @@
+import DataTables from 'datatables.net';
 import { Component, OnInit } from '@angular/core';
 import { UsersDto } from '../../../Core/Models/users.model';
 import { UserServiceService } from '../../../Core/Services/user.service.service';
 import { ToastrService } from 'ngx-toastr';
-import DataTable from 'datatables.net-dt';
-let table = new DataTable('#Users');
+
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
@@ -11,12 +11,20 @@ let table = new DataTable('#Users');
 })
 export class UserListComponent implements OnInit {
   users: UsersDto[] = [];
+  dtOptions: any = {};
 
   constructor(
     private userService: UserServiceService,
     private toastr: ToastrService
   ) {}
+
   ngOnInit(): void {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      processing: true,
+      // ... other options
+    };
     this.userService.getUsers().subscribe((data) => {
       this.users = data;
     });
