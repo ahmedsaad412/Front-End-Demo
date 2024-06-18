@@ -1,3 +1,4 @@
+import { Statues } from './../../../Core/Enums/statues.enum';
 import { UserServiceService } from './../../../Core/Services/user.service.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -95,6 +96,9 @@ export class UserFormComponent implements OnInit {
   Genders: string[] = [];
   GenderList: any = Gender;
   selectedGender: Number | undefined;
+  Statues: string[] = [];
+  StatueList: any = Statues;
+  selectedStatue: Number | undefined;
 
   constructor(
     private userService: UserServiceService,
@@ -114,32 +118,31 @@ export class UserFormComponent implements OnInit {
       }
     });
 
-    
-
     this.Genders = Object.keys(Gender).filter((key) => isNaN(Number(key)));
+    this.Statues = Object.keys(Statues).filter((key) => isNaN(Number(key)));
   }
   onSubmit(formData: FormGroup) {
     var userDto: AddUserDto = {
       id: this.id,
       fNameAr: formData.value.name,
-      secNameAr: formData.value.name,
-      thirdNameAr: formData.value.name,
-      lNameAr: formData.value.name,
-      fNameEn: formData.value.name,
-      secNameEn: formData.value.name,
-      thirdNameEn: formData.value.name,
-      lNameEn: formData.value.name,
-      email: formData.value.name,
-      countryCode: formData.value.number,
-      nationalId: formData.value.number,
-      mobileNumber: formData.value.number,
-      birthDate: formData.value.number,
+      secNameAr: formData.value.secNameAr,
+      thirdNameAr: formData.value.thirdNameAr,
+      lNameAr: formData.value.lNameAr,
+      fNameEn: formData.value.fNameEn,
+      secNameEn: formData.value.secNameEn,
+      thirdNameEn: formData.value.thirdNameEn,
+      lNameEn: formData.value.lNameEn,
+      email: formData.value.email,
+      countryCode: formData.value.countryCode,
+      nationalId: formData.value.nationalId,
+      mobileNumber: formData.value.mobileNumber,
+      birthDate: formData.value.birthDate,
       gender: parseInt(formData.value.gender),
-      maritalStatus: formData.value.number,
-      addressAr: formData.value.number,
-      addressEn: formData.value.number,
-      jobId: formData.value.number,
-      departmentId: formData.value.number,
+      maritalStatus: parseInt(formData.value.maritalStatus),
+      addressAr: formData.value.addressAr,
+      addressEn: formData.value.addressEn,
+      jobId: formData.value.jobId,
+      departmentId: formData.value.departmentId,
     };
     console.log(userDto);
 
