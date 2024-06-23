@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UserListComponent implements OnInit {
   users: UsersDto[] = [];
-  dtOptions: any = {};
+  // dtOptions: any = {};
 
   constructor(
     private userService: UserServiceService,
@@ -19,14 +19,16 @@ export class UserListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 10,
-      processing: true,
-      // ... other options
-    };
+    // this.dtOptions = {
+    //   pagingType: 'full_numbers',
+    //   pageLength: 10,
+    //   processing: true,
+    //   // ... other options
+    // };
     this.userService.getUsers().subscribe((data) => {
       this.users = data;
+      console.log(data);
+      console.log(this.users);
     });
   }
   deleteUser(id: number): void {

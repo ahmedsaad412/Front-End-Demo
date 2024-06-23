@@ -7,4 +7,10 @@ export const ENDPOINT = {
     UPDATE_User: 'Users/',
     DELETE_User: 'Users/',
   },
+  Department: {
+    GET_ALL_Department: 'Users/GetDepartments',
+  },
+  Job: {
+    GET_ALL_Job: 'Users/GetJobs',
+  },
 };

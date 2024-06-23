@@ -6,6 +6,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AddUserDto } from '../../../Core/Models/addUser.model';
 import { Gender } from '../../../Core/Enums/gender.enum';
+import { DepartmentDto } from '../../../Core/Models/department.model';
+import { JobDto } from '../../../Core/Models/job.model';
+import { state } from '@angular/animations';
 
 @Component({
   selector: 'app-user-form',
@@ -13,6 +16,14 @@ import { Gender } from '../../../Core/Enums/gender.enum';
   styleUrl: './user-form.component.css',
 })
 export class UserFormComponent implements OnInit {
+  departments: DepartmentDto[] = [];
+  jobs: JobDto[] = [];
+  constructor(
+    private userService: UserServiceService,
+    private activatedRoute: ActivatedRoute,
+    private toastr: ToastrService,
+    private router: Router
+  ) {}
   formData: FormGroup = new FormGroup({
     fNameAr: new FormControl(null, [
       Validators.minLength(3),
@@ -49,6 +60,7 @@ export class UserFormComponent implements OnInit {
     email: new FormControl(null, [
       Validators.minLength(3),
       Validators.required,
+      Validators.email,
     ]),
     countryCode: new FormControl(null, [
       Validators.minLength(3),
@@ -99,15 +111,28 @@ export class UserFormComponent implements OnInit {
   Statues: string[] = [];
   StatueList: any = Statues;
   selectedStatue: Number | undefined;
-
-  constructor(
-    private userService: UserServiceService,
-    private activatedRoute: ActivatedRoute,
-    private toastr: ToastrService,
-    private router: Router
-  ) {}
+  selectedDepartment: number | null = null;
 
   ngOnInit(): void {
+    this.userService.getDepartments().subscribe({
+      next: (response) => {
+        this.departments = response;
+        console.log(this.departments);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+
+    this.userService.getJobs().subscribe({
+      next: (response) => {
+        this.jobs = response;
+        console.log(this.jobs);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
     this.activatedRoute.params.subscribe((params) => {
       console.log(params['id']);
       if (params['id']) {
@@ -120,6 +145,8 @@ export class UserFormComponent implements OnInit {
 
     this.Genders = Object.keys(Gender).filter((key) => isNaN(Number(key)));
     this.Statues = Object.keys(Statues).filter((key) => isNaN(Number(key)));
+    console.log(this.Genders);
+    console.log(this.Statues);
   }
   onSubmit(formData: FormGroup) {
     var userDto: AddUserDto = {
@@ -144,7 +171,7 @@ export class UserFormComponent implements OnInit {
       jobId: formData.value.jobId,
       departmentId: formData.value.departmentId,
     };
-    console.log(userDto);
+    console.log(userDto.jobId);
 
     if (this.id > 0) {
       this.userService.updateUser(this.id, userDto).subscribe(
